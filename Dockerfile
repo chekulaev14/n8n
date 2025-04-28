@@ -1,5 +1,23 @@
+# Используем официальный образ n8n
 FROM n8nio/n8n:latest
 
-# Устанавливаем Apify-интеграцию
-RUN npm install n8n-nodes-apify
-RUN npm cache clean --force
+# Переключаемся на root для установки community-пакетов
+USER root
+
+# Переходим в директорию самого движка n8n
+WORKDIR /usr/local/lib/node_modules/n8n
+
+# Устанавливаем Apify-интеграцию и убираем dev-зависимости
+RUN npm install n8n-nodes-apify \
+  && npm prune --production \
+  && npm cache clean --force
+
+# Возвращаемся к непривилегированному пользователю
+USER node
+
+# Восстанавливаем рабочую директорию по умолчанию
+WORKDIR /home/node
+
+# По желанию: задаём точную версию n8n (если не нужен latest)
+# ARG N8N_VERSION=1.89.2
+# FROM n8nio/n8n:${N8N_VERSION}
