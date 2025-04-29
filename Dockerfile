@@ -7,8 +7,8 @@ USER root
 # Переходим в директорию самого движка n8n
 WORKDIR /usr/local/lib/node_modules/n8n
 
-# Устанавливаем Apify-интеграцию и убираем dev-зависимости
-RUN npm install n8n-nodes-apify \
+# Устанавливаем Apify-интеграцию и Docxtemplater и убираем dev-зависимости
+RUN npm install n8n-nodes-apify jreyesr/n8n-nodes-docxtemplater \
   && npm prune --production \
   && npm cache clean --force
 
