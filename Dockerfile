@@ -7,12 +7,14 @@ USER root
 # Переходим в директорию самого движка n8n
 WORKDIR /usr/local/lib/node_modules/n8n
 
-# Устанавливаем Apify-интеграцию и Docxtemplater и убираем dev-зависимости
-RUN pnpm install n8n-nodes-apify jreyesr/n8n-nodes-docxtemplater \
-  && pnpm prune --production \
-  && pnpm cache clean --force
+USER root
+WORKDIR /usr/local/lib/node_modules/n8n
 
-# Возвращаемся к непривилегированному пользователю
+# Устанавливаем Apify и Docxtemplater через pnpm
+RUN pnpm add --prod n8n-nodes-apify jreyesr/n8n-nodes-docxtemplater \
+  && pnpm prune --prod \
+  && pnpm store prune
+
 USER node
 
 # Восстанавливаем рабочую директорию по умолчанию
