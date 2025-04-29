@@ -8,9 +8,9 @@ USER root
 WORKDIR /usr/local/lib/node_modules/n8n
 
 # Устанавливаем Apify-интеграцию и Docxtemplater и убираем dev-зависимости
-RUN npm install n8n-nodes-apify jreyesr/n8n-nodes-docxtemplater \
-  && npm prune --production \
-  && npm cache clean --force
+RUN pnpm install n8n-nodes-apify jreyesr/n8n-nodes-docxtemplater \
+  && pnpm prune --production \
+  && pnpm cache clean --force
 
 # Возвращаемся к непривилегированному пользователю
 USER node
