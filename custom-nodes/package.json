@@ -1,8 +1,6 @@
 {
     "dependencies": {
-      "n8n-nodes-apify": "^0.1.0",
-      "n8n-nodes-docxtemplater": "^0.1.0",
-      "n8n-nodes-gpt": "^0.1.0"
+      "n8n-nodes-docxtemplater": "git+https://github.com/jreyesr/n8n-nodes-docxtemplater.git"
     }
   }
   
