@@ -1,18 +1,14 @@
 # syntax=docker/dockerfile:1.3
-FROM n8nio/n8n:latest
+FROM n8nio/n8n:latest14
 
 USER root
 
-# Сброс кэша (можешь увеличивать значение при необходимости)
 ARG CACHE_BREAKER=1
 
-# Копируем файл с зависимостями кастомных нод
 COPY custom-nodes/package.json /custom-nodes/package.json
-
-# Устанавливаем кастомные ноды
 RUN cd /custom-nodes && npm install
 
-# Копируем скрипт запуска
+COPY custom-nodes/ /home/node/.n8n/custom-nodes/
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
 
 USER node

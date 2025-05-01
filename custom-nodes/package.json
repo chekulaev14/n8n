@@ -1,6 +1,6 @@
 {
     "dependencies": {
-      "n8n-nodes-docxtemplater": "git+https://github.com/jreyesr/n8n-nodes-docxtemplater.git"
+      "n8n-nodes-docxtemplater-pdf-converter": "^0.1.7"
     }
   }
   
